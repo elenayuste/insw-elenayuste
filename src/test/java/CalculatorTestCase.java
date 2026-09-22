@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -63,19 +66,19 @@ public class CalculatorTestCase {
     @Test
     void testConcat() {
         String result = calculator.concat("Hola", "Mundo");
-        assertEquals("Hola Mundo", result);
+        assertEquals("HolaMundo", result);
     }
 
     /// Concatenación con uno de los parámetros nulos
     @Test
     void testConcatNullLeft() {
-        String result = calculator.concat("null", "hola");
+        String result = calculator.concat(null, "hola");
         assertEquals("empty", result);
     }
 
     @Test
     void testConcatNullRight() {
-        String result = calculator.concat("hola", "null");
+        String result = calculator.concat("hola", null);
         assertEquals("empty", result);
     }
 
@@ -84,6 +87,74 @@ public class CalculatorTestCase {
     @Test
     void testSum() {
         double result = calculator.sum(3, 4);
+        assertEquals(7, result);
+    }
+
+    /// Suma con negativos
+
+    @Test
+    void testSumNegative() {
+        double result = calculator.sum(3, -4);
+        assertEquals(-1, result);
+    }
+
+    //// DISCOUNT
+    /// Descuento valido
+
+    @Test
+    void testDiscoun() {
+        double result = calculator.discount(100, 30);
+        assertEquals(70, result);
+    }
+
+    /// Descuentos del 0 y del 100
+    @Test
+    void testDiscoun100() {
+        double result = calculator.discount(100, 100);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void testDiscoun0() {
+        double result = calculator.discount(100, 0);
+        assertEquals(100, result);
+    }
+
+    /// Descuento invalido
+
+    @Test
+    void testDiscountInvPos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.discount(100, 150));
+    }
+
+    @Test
+    void testDiscountInvNeg() {
+        assertThrows(IllegalArgumentException.class,
+                () -> calculator.discount(100, -5));
+    }
+
+    //// CALCULATE TOTAL
+    /// Lista de importes
+
+    @Test
+    void testCalculateTotal() {
+        List<Double> imports = List.of(1.5, 2.5, 3.5, 4.5);
+
+        double result = calculator.calculateTotal(imports);
+        assertEquals(12, result);
+
+    }
+
+    /// Lista de importes vacía
+
+    @Test
+    void testCalculateTotalEmpty() {
+        List<Double> imports = List.of();
+
+        double result = calculator.calculateTotal(imports);
+        assertEquals(0, result);
+
     }
 
 }
