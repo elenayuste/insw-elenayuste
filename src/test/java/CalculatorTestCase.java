@@ -23,7 +23,7 @@ public class CalculatorTestCase {
 
     @Test
     void testMultiply() {
-        int result = calculator.multiply(3, 4);
+        double result = calculator.multiply(3, 4);
         assertEquals(12, result);
     }
 
@@ -31,13 +31,13 @@ public class CalculatorTestCase {
 
     @Test
     void testMultiplyZeroLeft() {
-        int result = calculator.multiply(0, 4);
+        double result = calculator.multiply(0, 4);
         assertEquals(0, result);
     }
 
     @Test
     void testMultiplyZeroRight() {
-        int result = calculator.multiply(4, 0);
+        double result = calculator.multiply(4, 0);
         assertEquals(0, result);
     }
 
@@ -45,19 +45,19 @@ public class CalculatorTestCase {
 
     @Test
     void testMultiplyNegativeLeft() {
-        int result = calculator.multiply(-3, 4);
+        double result = calculator.multiply(-3, 4);
         assertEquals(-12, result);
     }
 
     @Test
     void testMultiplyNegativeRight() {
-        int result = calculator.multiply(3, -4);
+        double result = calculator.multiply(3, -4);
         assertEquals(-12, result);
     }
 
     @Test
     void testMultiplyNegative() {
-        int result = calculator.multiply(-3, -4);
+        double result = calculator.multiply(-3, -4);
         assertEquals(12, result);
     }
 
