@@ -15,6 +15,10 @@ public class Article {
         this.descuento = descuento;
     }
 
+    public Article(){
+        
+    }
+
     public String getNombre() {
         return nombre;
     }

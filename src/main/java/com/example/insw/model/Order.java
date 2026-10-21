@@ -11,6 +11,10 @@ public class Order {
         this.articulos = articulos;
     }
 
+        public Order() {
+
+    }
+
     public String getId() {
         return id;
     }
