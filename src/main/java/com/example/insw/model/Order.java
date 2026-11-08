@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Order {
     private String id;
-    private List<Article> articulos;
+    private List<Article> articles;
 
-    public Order(String id, List<Article> articulos) {
+    public Order(String id, List<Article> articles) {
         this.id = id;
-        this.articulos = articulos;
+        this.articles = articles;
     }
 
-        public Order() {
+    public Order() {
 
     }
 
@@ -23,19 +23,19 @@ public class Order {
         this.id = id;
     }
 
-    public List<Article> getArticulos() {
-        return articulos;
+    public List<Article> getArticles() {
+        return articles;
     }
 
-    public void setArticulos(List<Article> articulos) {
-        this.articulos = articulos;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     public double getGrossTotal() {
         double gross = 0;
 
-        for (int i = 0; i < this.articulos.size(); i++) {
-            gross += articulos.get(i).getGrossAmount();
+        for (int i = 0; i < this.articles.size(); i++) {
+            gross += articles.get(i).getGrossAmount();
 
         }
 
@@ -46,8 +46,8 @@ public class Order {
     public double getDiscountedTotal() {
         double discount = 0;
 
-        for (int i = 0; i < this.articulos.size(); i++) {
-            discount += articulos.get(i).getDiscountedAmount();
+        for (int i = 0; i < this.articles.size(); i++) {
+            discount += articles.get(i).getDiscountedAmount();
 
         }
 
@@ -57,9 +57,20 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order [id=" + id + ", articulos=" + articulos + ", getId()=" + getId() + ", getArticulos()="
-                + getArticulos() + ", getGrossTotal()=" + getGrossTotal() + ", getDiscountedTotal()="
-                + getDiscountedTotal() + ", toString()=" + super.toString() + "]";
+        String resultado = "Order " + id + ":\n";
+
+        for (Article articulo : articles) {
+            resultado += articulo.getName()
+                    + " x" + articulo.getQuantity()
+                    + " @ " + articulo.getUnitPrice() + "$"
+                    + " (discount " + articulo.getDiscount() + "%)"
+                    + " = " + articulo.getDiscountedAmount() + "$\n";
+        }
+
+        resultado += "Gross total: " + getGrossTotal() + "$\n";
+        resultado += "Discounted total: " + getDiscountedTotal() + "$\n";
+
+        return resultado;
     }
 
 }
